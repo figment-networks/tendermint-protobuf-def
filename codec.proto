@@ -30,6 +30,22 @@ enum BlockIDFlag {
   BLOCK_ID_FLAG_NIL     = 3 [(gogoproto.enumvalue_customname) = "BlockIDFlagNil"];
 }
 
+message StreamPiece {
+  EventDataNewBlock eventdatanewblock = 1;
+  EventDataNewBlockHeader eventdatanewblockheader = 2;
+  EventDataNewEvidence eventdatanewevidence = 3;
+  EventDataTx eventdatatx = 4;
+  EventDataVote eventdatavote = 5;
+  EventDataRoundState eventdataroundstate = 6;
+  EventDataNewRound eventdatanewround = 7;
+  EventDataCompleteProposal eventdatacompleteproposal = 8;
+  EventDataValidatorSetUpdates eventdatavalidatorsetupdates = 9;
+  EventDataString eventdatastring = 10;
+  EventDataBlockSyncStatus eventdatablocksyncstatus = 11;
+  EventDataStateSyncStatus eventdatastatesyncstatus = 12;
+}
+
+
 // EventDataNewBlock
 message EventDataNewBlock {
   Block block = 1;
@@ -51,7 +67,7 @@ message ResponseEndBlock {
 
 message ConsensusParams {
   Block block = 1;
-  Evidence evidence = 2;
+  EventDataNewEvidence evidence = 2;
   Validator validator = 3;
   Version version = 4;
 }
@@ -133,7 +149,7 @@ message Data {
 }
 
 // EventDataNewEvidence
-message Evidence {
+message EventDataNewEvidence {
   oneof sum {
     DuplicateVoteEvidence duplicate_vote_evidence = 1;
     LightClientAttackEvidence light_client_attack_evidence = 2;
@@ -141,15 +157,20 @@ message Evidence {
 }
 
 message DuplicateVoteEvidence {
-  Vote vote_a = 1;
-  Vote vote_b = 2;
+  EventDataVote vote_a = 1;
+  EventDataVote vote_b = 2;
   int64 total_voting_power = 3;
   int64 validator_power = 4;
   google.protobuf.Timestamp timestamp = 5 [(gogoproto.nullable) = false, (gogoproto.stdtime) = true];
 }
 
+// EventDataTx
+message EventDataTx {
+  TxResult TxResult = 1;
+}
+
 // EventDataVote
-message Vote {
+message EventDataVote {
   SignedMsgType type = 1;
   int64 height = 2;
   int32 round = 3;
@@ -187,7 +208,7 @@ message SignedHeader {
 }
 
 message EvidenceList {
-  repeated Evidence evidence = 1 [(gogoproto.nullable) = false];
+  repeated EventDataNewEvidence evidence = 1 [(gogoproto.nullable) = false];
 }
 
 message Validator {
@@ -278,6 +299,9 @@ message EventDataValidatorSetUpdates {
 }
 
 // EventDataString is just a string and not a struct, unsure how we make a message for this one
+message EventDataString {
+  string EventDataString = 1;
+}
 
 // EventDataBlockSyncStatus
 message EventDataBlockSyncStatus {
