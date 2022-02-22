@@ -53,11 +53,6 @@ message EventValidatorSetUpdates {
   repeated tendermint.types.Validator validator_updates = 1;
 }
 
-message Timestamp {
-  int64 seconds = 1;
-  int32 nanos   = 2;
-}
-
 message TxResult {
   uint64                            height  = 1;
   uint32                            index   = 2;
