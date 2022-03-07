@@ -1,0 +1,16 @@
+{
+  "name": "tendermint-protobuf-def",
+  "version": "1.0.0",
+  "description": "Protobuf definitions",
+  "scripts": {
+    "build": "mkdir ts_files && protoc -I=. --ts_out=ts_files codec.proto"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/figment-networks/tendermint-protobuf-def.git"
+  },
+  "license": "ISC",
+  "devdependencies": {
+    "protoc-gen-ts": "^0.8.2"
+  }
+}
