@@ -266,7 +266,7 @@ type EventBlock struct {
 	unknownFields protoimpl.UnknownFields
 
 	Block            *types.Block               `protobuf:"bytes,1,opt,name=block,proto3" json:"block,omitempty"`
-	BlockId          *types.BlockID             `protobuf:"bytes,2,opt,name=block_id,json=blockId,proto3" json:"block_id,omitempty"` // not present in v0.34.13
+	BlockId          *types.BlockID             `protobuf:"bytes,2,opt,name=block_id,json=blockId,proto3" json:"block_id,omitempty"` // not present in v0.34.9
 	ResultBeginBlock *types1.ResponseBeginBlock `protobuf:"bytes,3,opt,name=result_begin_block,json=resultBeginBlock,proto3" json:"result_begin_block,omitempty"`
 	ResultEndBlock   *types1.ResponseEndBlock   `protobuf:"bytes,4,opt,name=result_end_block,json=resultEndBlock,proto3" json:"result_end_block,omitempty"`
 }
