@@ -7,9 +7,9 @@
 package codec
 
 import (
+	abci "github.com/figment-networks/tendermint-protobuf-def/tendermint/abci"
+	types "github.com/figment-networks/tendermint-protobuf-def/tendermint/types"
 	_ "github.com/gogo/protobuf/gogoproto"
-	types1 "github.com/tendermint/tendermint/abci/types"
-	types "github.com/tendermint/tendermint/proto/tendermint/types"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -265,10 +265,10 @@ type EventBlock struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Block            *types.Block               `protobuf:"bytes,1,opt,name=block,proto3" json:"block,omitempty"`
-	BlockId          *types.BlockID             `protobuf:"bytes,2,opt,name=block_id,json=blockId,proto3" json:"block_id,omitempty"` // not present in v0.34.9
-	ResultBeginBlock *types1.ResponseBeginBlock `protobuf:"bytes,3,opt,name=result_begin_block,json=resultBeginBlock,proto3" json:"result_begin_block,omitempty"`
-	ResultEndBlock   *types1.ResponseEndBlock   `protobuf:"bytes,4,opt,name=result_end_block,json=resultEndBlock,proto3" json:"result_end_block,omitempty"`
+	Block            *types.Block             `protobuf:"bytes,1,opt,name=block,proto3" json:"block,omitempty"`
+	BlockId          *types.BlockID           `protobuf:"bytes,2,opt,name=block_id,json=blockId,proto3" json:"block_id,omitempty"` // not present in v0.34.9
+	ResultBeginBlock *abci.ResponseBeginBlock `protobuf:"bytes,3,opt,name=result_begin_block,json=resultBeginBlock,proto3" json:"result_begin_block,omitempty"`
+	ResultEndBlock   *abci.ResponseEndBlock   `protobuf:"bytes,4,opt,name=result_end_block,json=resultEndBlock,proto3" json:"result_end_block,omitempty"`
 }
 
 func (x *EventBlock) Reset() {
@@ -317,14 +317,14 @@ func (x *EventBlock) GetBlockId() *types.BlockID {
 	return nil
 }
 
-func (x *EventBlock) GetResultBeginBlock() *types1.ResponseBeginBlock {
+func (x *EventBlock) GetResultBeginBlock() *abci.ResponseBeginBlock {
 	if x != nil {
 		return x.ResultBeginBlock
 	}
 	return nil
 }
 
-func (x *EventBlock) GetResultEndBlock() *types1.ResponseEndBlock {
+func (x *EventBlock) GetResultEndBlock() *abci.ResponseEndBlock {
 	if x != nil {
 		return x.ResultEndBlock
 	}
@@ -430,10 +430,10 @@ type TxResult struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Height uint64                    `protobuf:"varint,1,opt,name=height,proto3" json:"height,omitempty"`
-	Index  uint32                    `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
-	Tx     []byte                    `protobuf:"bytes,3,opt,name=tx,proto3" json:"tx,omitempty"`
-	Result *types1.ResponseDeliverTx `protobuf:"bytes,4,opt,name=result,proto3" json:"result,omitempty"`
+	Height uint64                  `protobuf:"varint,1,opt,name=height,proto3" json:"height,omitempty"`
+	Index  uint32                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Tx     []byte                  `protobuf:"bytes,3,opt,name=tx,proto3" json:"tx,omitempty"`
+	Result *abci.ResponseDeliverTx `protobuf:"bytes,4,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *TxResult) Reset() {
@@ -489,7 +489,7 @@ func (x *TxResult) GetTx() []byte {
 	return nil
 }
 
-func (x *TxResult) GetResult() *types1.ResponseDeliverTx {
+func (x *TxResult) GetResult() *abci.ResponseDeliverTx {
 	if x != nil {
 		return x.Result
 	}
@@ -601,20 +601,20 @@ func file_codec_proto_rawDescGZIP() []byte {
 
 var file_codec_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_codec_proto_goTypes = []interface{}{
-	(*EventList)(nil),                 // 0: fig.tm.codec.v1.EventList
-	(*EventData)(nil),                 // 1: fig.tm.codec.v1.EventData
-	(*Event)(nil),                     // 2: fig.tm.codec.v1.Event
-	(*EventAttribute)(nil),            // 3: fig.tm.codec.v1.EventAttribute
-	(*EventBlock)(nil),                // 4: fig.tm.codec.v1.EventBlock
-	(*EventTx)(nil),                   // 5: fig.tm.codec.v1.EventTx
-	(*EventValidatorSetUpdates)(nil),  // 6: fig.tm.codec.v1.EventValidatorSetUpdates
-	(*TxResult)(nil),                  // 7: fig.tm.codec.v1.TxResult
-	(*types.Block)(nil),               // 8: tendermint.types.Block
-	(*types.BlockID)(nil),             // 9: tendermint.types.BlockID
-	(*types1.ResponseBeginBlock)(nil), // 10: tendermint.abci.ResponseBeginBlock
-	(*types1.ResponseEndBlock)(nil),   // 11: tendermint.abci.ResponseEndBlock
-	(*types.Validator)(nil),           // 12: tendermint.types.Validator
-	(*types1.ResponseDeliverTx)(nil),  // 13: tendermint.abci.ResponseDeliverTx
+	(*EventList)(nil),                // 0: fig.tm.codec.v1.EventList
+	(*EventData)(nil),                // 1: fig.tm.codec.v1.EventData
+	(*Event)(nil),                    // 2: fig.tm.codec.v1.Event
+	(*EventAttribute)(nil),           // 3: fig.tm.codec.v1.EventAttribute
+	(*EventBlock)(nil),               // 4: fig.tm.codec.v1.EventBlock
+	(*EventTx)(nil),                  // 5: fig.tm.codec.v1.EventTx
+	(*EventValidatorSetUpdates)(nil), // 6: fig.tm.codec.v1.EventValidatorSetUpdates
+	(*TxResult)(nil),                 // 7: fig.tm.codec.v1.TxResult
+	(*types.Block)(nil),              // 8: tendermint.types.Block
+	(*types.BlockID)(nil),            // 9: tendermint.types.BlockID
+	(*abci.ResponseBeginBlock)(nil),  // 10: tendermint.abci.ResponseBeginBlock
+	(*abci.ResponseEndBlock)(nil),    // 11: tendermint.abci.ResponseEndBlock
+	(*types.Validator)(nil),          // 12: tendermint.types.Validator
+	(*abci.ResponseDeliverTx)(nil),   // 13: tendermint.abci.ResponseDeliverTx
 }
 var file_codec_proto_depIdxs = []int32{
 	4,  // 0: fig.tm.codec.v1.EventList.new_block:type_name -> fig.tm.codec.v1.EventBlock
