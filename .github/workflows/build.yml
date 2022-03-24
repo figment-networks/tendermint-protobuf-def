@@ -18,6 +18,6 @@ jobs:
           node-version: 14
       - uses: arduino/setup-protoc@v1
       - run: go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27.1
-      - run: npm install protoc-gen-ts
+      - run: npm -g install protoc-gen-ts
       - run: go mod download
       - run: make generate
