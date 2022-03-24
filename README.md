@@ -1,6 +1,6 @@
 # tendermint-protobuf-def
 
-This repository contains Protobuf definitions for the Tendermint Firehose integration.
+This repository contains Protobuf definitions for the Tendermint Firehose integration and the typescript definitions
 
 ## Generate Code
 
