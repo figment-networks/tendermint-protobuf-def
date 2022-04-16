@@ -49,7 +49,7 @@ message TransactionData {
 }
 
 message Block {
-  Header       header      = 1 [(gogoproto.nullable) = false];
+  Header header = 1 [(gogoproto.nullable) = false];
   reserved 2; // Data data = 2 [(gogoproto.nullable) = false];
   EvidenceList evidence    = 3 [(gogoproto.nullable) = false];
   Commit       last_commit = 4;

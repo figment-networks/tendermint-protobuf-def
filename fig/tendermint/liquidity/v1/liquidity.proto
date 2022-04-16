@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package liquidity.v1;
+package fig.tendermint.liquidity.v1;
 
 option go_package = "github.com/figment-networks/tendermint-protobuf-def/cosmos";
 
 import "gogoproto/gogo.proto";
 import "google/protobuf/descriptor.proto";
 import "cosmos/base/v1beta1/coin.proto";
-import "annotations.proto"; // protoc-gen-openapiv2/options/annotations.proto
+import "protoc-gen-openapiv2/options/annotations.proto"; // protoc-gen-openapiv2/options/annotations.proto
 
 message MsgSwapWithinBatch {
   string swap_requester_address = 1 [
