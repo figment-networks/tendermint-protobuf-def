@@ -41,7 +41,7 @@ function echo_headers() {
 }
 
 function echo_file() {
-    local package=$(egrep '^package' ${TMP_DIR}/$1 | sort -r | awk '{ print $2}' | sed -e 's/;$//')
+    local package=$(egrep '^package' ${TMP_DIR}/$1 | sort -drs | awk '{ print $2}' | sed -e 's/;$//')
     if [[ ! " ${packages_list[*]} " =~ " ${package} " ]]; then
         packages_list+=(${package})
     fi
@@ -63,7 +63,7 @@ function process_file() {
     fi
 
     log_green Processing file - ${file}
-    imports=$(egrep '^import' ${TMP_DIR}/${file} | sort -r | awk '{ print $2}' | sed -e 's/;$//;s/\"//g')
+    imports=$(egrep '^import' ${TMP_DIR}/${file} | sort -drs | awk '{ print $2}' | sed -e 's/;$//;s/\"//g')
     for import in ${imports}; do
         if [[ ! " ${processed_files[*]} " =~ " ${import} " ]]; then
             log_green Processing new import - ${import} for ${file}
