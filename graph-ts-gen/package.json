@@ -4,7 +4,9 @@
   "main": "src/gen.ts",
   "license": "MIT",
   "scripts": {
-      "build": "protoc --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen --proto_path=../third_party/ --as_out=../graph-ts $(grep -slR 'message Msg' ../third_party/| egrep '\\.proto$')",
+      "build-msg": "protoc --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen --proto_path=../third_party/ --as_out=../graph-ts $(grep -slR 'message Msg' ../third_party/| egrep '\\.proto$')",
+      "build-tendermint": "protoc --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen --proto_path=../third_party/ --as_out=../graph-ts $(find ../third_party/tendermint -type f -name '*.proto')",
+      "build": "yarn build-msg && yarn build-tendermint",
       "postbuild": "prettier --write -c ../graph-ts/**/*.ts"
 
   },
