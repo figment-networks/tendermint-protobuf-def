@@ -62,11 +62,11 @@ jobs:
       - name: Graph-as-to-rust
         working-directory: repos
         run: |
-          git clone --branch tendermint --single-branch https://github.com/figment-networks/graph-as-to-rust
+          git clone --branch cosmos --single-branch https://github.com/figment-networks/graph-as-to-rust
           cd graph-as-to-rust
           yarn install
           yarn tsc && node run.js
-          mv tendermint.rs generated.rs
+          mv cosmos.rs generated.rs
 
       - name: Add Rust files to release
         working-directory: repos
